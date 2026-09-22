@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { logout } from "../../redux/userSlice";
 
 function Header() {
@@ -12,6 +13,8 @@ function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    delete axios.defaults.headers.common["Authorization"];
     dispatch(logout());
     navigate("/login");
   };

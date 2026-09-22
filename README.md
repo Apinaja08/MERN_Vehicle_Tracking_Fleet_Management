@@ -17,7 +17,7 @@ Customer, fleet, route numbers and statuses are shown in graphics on the admin p
 
 ## Route
 
-Start and destination information is retrieved from the user using the React Leaflet library.
+Start and destination information is retrieved from the user using the React Leaflet library
 
 ![N|Solid](client/public/assets/route1.PNG)
 

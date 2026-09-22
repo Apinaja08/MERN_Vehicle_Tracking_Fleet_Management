@@ -26,6 +26,8 @@ export default function Login() {
       const res = await axios.post("/auth/login", user);
       const decoded = jwt_decode(res.data.token);
       localStorage.setItem("user", JSON.stringify(decoded.user));
+      localStorage.setItem("token", res.data.token);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
       dispatch(login(decoded.user));
       navigate("/");
     } catch (error) {

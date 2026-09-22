@@ -8,18 +8,19 @@ import {
   updateStatusCustomer,
   deleteCustomer,
 } from "../controllers/customer.js";
+import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
-router.get("/getAllCustomers", getAllCustomers);
-router.get("/getCustomer/:id", getCustomer);
+router.get("/getAllCustomers", verifyToken, getAllCustomers);
+router.get("/getCustomer/:id", verifyToken, getCustomer);
 
-router.put("/updateCustomer/:id", updateCustomer);
-router.put("/updateStatusCustomer", updateStatusCustomer);
+router.put("/updateCustomer/:id", verifyToken, updateCustomer);
+router.put("/updateStatusCustomer", verifyToken, updateStatusCustomer);
 
-router.post("/addCustomer", addCustomer);
+router.post("/addCustomer", verifyToken, addCustomer);
 router.post("/login", login);
 
-router.delete("/deleteCustomer/:id", deleteCustomer);
+router.delete("/deleteCustomer/:id", verifyToken, deleteCustomer);
 
 export default router;

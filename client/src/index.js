@@ -1,10 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import axios from "axios";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+
+const savedToken = localStorage.getItem("token");
+if (savedToken) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${savedToken}`;
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

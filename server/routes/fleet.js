@@ -1,16 +1,17 @@
 import express from "express";
 import { addFleet, deleteFleet, getAllFleets, getFleet, updateFleet, updateStatusFleet } from "../controllers/fleet.js";
+import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
-router.get("/getAllFleets", getAllFleets);
-router.get("/getFleet/:id", getFleet);
+router.get("/getAllFleets", verifyToken, getAllFleets);
+router.get("/getFleet/:id", verifyToken, getFleet);
 
-router.put("/updateFleet/:id", updateFleet);
-router.put("/updateStatusFleet", updateStatusFleet);
+router.put("/updateFleet/:id", verifyToken, updateFleet);
+router.put("/updateStatusFleet", verifyToken, updateStatusFleet);
 
-router.post("/addFleet", addFleet);
+router.post("/addFleet", verifyToken, addFleet);
 
-router.delete("/deleteFleet/:id", deleteFleet);
+router.delete("/deleteFleet/:id", verifyToken, deleteFleet);
 
 export default router;
